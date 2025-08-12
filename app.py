@@ -28,18 +28,13 @@ if video is not None and st.button("🔍 Analizar"):
             tmp_path = tmp.name
 
         # Ejecutar análisis
-        feedback_df, resumen, output_path = analizar_video(tmp_path, ejercicio, usar_gpt = True)
+        feedback_df, resumen, output_path, feedback_text = analizar_video(tmp_path, ejercicio, usar_gpt = True)
 
     st.success("✅ Análisis completado")
 
     st.subheader("📋 Feedback técnico del ejercicio")
-    st.markdown(resumen)
+    st.write(resumen)
 
-    st.subheader("🎥 Video analizado")
-    st.video(output_path)
-
-    st.subheader("📊 Datos en tabla")
-    st.dataframe(feedback_df)
 
     # (Opcional) Botón para descargar el video analizado
     with open(output_path, 'rb') as f:
